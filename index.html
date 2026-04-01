@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Glassmorphism Footer | Portfolio UI</title>
+  <!-- Bootstrap 5 CSS (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome 6 (free icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts: modern sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0b1120 0%, #1a1f2e 50%, #0f172a 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* --- dummy page content to show scrolling & footer position --- */
+    .hero-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .hero-content h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      background: linear-gradient(120deg, #fbc2eb, #a6c1ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .hero-content p {
+      color: #cbd5e6;
+      font-size: 1.2rem;
+      max-width: 600px;
+    }
+
+    /* ----- GLASSMORPHISM FOOTER (main style) ----- */
+    .glass-footer {
+      background: rgba(25, 30, 45, 0.45);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-top: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 2rem 2rem 0 0;
+      box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+      margin-top: 2rem;
+      transition: all 0.2s ease;
+    }
+
+    /* glowing border effect on top edge */
+    .glass-footer {
+      position: relative;
+    }
+    
+    .glass-footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 5%;
+      width: 90%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ff9acb, #7cb9ff, #ff9acb, transparent);
+      border-radius: 100%;
+      filter: blur(3px);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    /* inner container spacing */
+    .footer-inner {
+      padding: 3rem 2rem 1.5rem;
+    }
+
+    /* logo style */
+    .logo-brand {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(130deg, #FFB7D2, #A9D0FF);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+      letter-spacing: -0.5px;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .logo-icon {
+      background: rgba(255, 190, 210, 0.25);
+      width: 48px;
+      height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      backdrop-filter: blur(4px);
+      margin-right: 8px;
+      font-size: 1.7rem;
+      color: #ffb7d2;
+    }
+
+    .bio-text {
+      color: #eef2ff;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      opacity: 0.85;
+      margin-top: 0.8rem;
+      max-width: 260px;
+    }
+
+    /* headings inside footer */
+    .footer-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      position: relative;
+      display: inline-block;
+      background: linear-gradient(135deg, #FFC0E0, #8BBEFF);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.2px;
+    }
+
+    /* quick links list */
+    .quick-links {
+      list-style: none;
+      padding-left: 0;
+    }
+    .quick-links li {
+      margin-bottom: 0.7rem;
+    }
+    .quick-links li a {
+      text-decoration: none;
+      color: #eef2ff;
+      font-weight: 500;
+      transition: all 0.25s ease;
+      position: relative;
+      opacity: 0.8;
+      font-size: 0.95rem;
+    }
+    .quick-links li a:hover {
+      opacity: 1;
+      color: #FFB3D9;
+      text-shadow: 0 0 6px #ff9ad0;
+      margin-left: 6px;
+    }
+
+    /* contact info items */
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1rem;
+      color: #eef2ff;
+      font-size: 0.9rem;
+      opacity: 0.85;
+      transition: 0.2s;
+    }
+    .contact-item i {
+      width: 30px;
+      font-size: 1.2rem;
+      color: #FFB7D2;
+      transition: 0.2s;
+    }
+    .contact-item:hover {
+      opacity: 1;
+      transform: translateX(4px);
+    }
+    .contact-item a {
+      color: #eef2ff;
+      text-decoration: none;
+    }
+    .contact-item a:hover {
+      color: #FFC0E0;
+    }
+
+    /* social icons styling with glow */
+    .social-icons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .social-icon {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(4px);
+      width: 42px;
+      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 40px;
+      color: #f0f3fa;
+      font-size: 1.3rem;
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      text-decoration: none;
+      border: 1px solid rgba(255,255,240,0.2);
+    }
+    .social-icon:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 180, 210, 0.25);
+      color: #FFB7D2;
+      box-shadow: 0 0 14px #ff9acb, 0 0 6px #7fb4ff;
+      border-color: rgba(255, 180, 210, 0.6);
+    }
+
+    /* copyright row */
+    .copyright {
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 1.5rem;
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: #bfc9e0;
+      letter-spacing: 0.3px;
+    }
+
+    /* scroll to top button - glowing & smooth */
+    .scroll-top-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 52px;
+      height: 52px;
+      background: rgba(30, 35, 55, 0.65);
+      backdrop-filter: blur(12px);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFC2E0;
+      font-size: 1.7rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255, 200, 220, 0.4);
+      z-index: 999;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      text-decoration: none;
+    }
+    .scroll-top-btn:hover {
+      transform: scale(1.08) translateY(-5px);
+      background: rgba(255, 140, 190, 0.3);
+      color: #FFE0F0;
+      box-shadow: 0 0 18px #ff99cc, 0 0 8px #88bbff;
+      border-color: #ffb3da;
+    }
+
+    /* responsive adjustments */
+    @media (max-width: 768px) {
+      .footer-inner {
+        padding: 2rem 1.5rem 1rem;
+      }
+      .logo-brand {
+        font-size: 1.8rem;
+      }
+      .footer-title {
+        margin-top: 0.5rem;
+      }
+      .scroll-top-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 1.3rem;
+        bottom: 20px;
+        right: 20px;
+      }
+      .glass-footer::before {
+        width: 80%;
+        left: 10%;
+      }
+    }
+
+    /* small tweaks for perfect glass */
+    .glass-footer .row > div {
+      margin-bottom: 1.5rem;
+    }
+    a, button {
+      transition: all 0.2s;
+    }
+    /* additional smoothness */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- demo hero section to show scrolling and layout context -->
+  <div class="hero-content">
+    <h1>✨ Creative Portfolio ✨</h1>
+    <p>Modern UI • Glassmorphism • Pink & Sky vibes<br>Scroll down to see the stunning footer with glowing effects</p>
+    <div style="margin-top: 20px;">
+      <i class="fas fa-arrow-down" style="color: #ffb7d2; font-size: 2rem; animation: bounce 2s infinite;"></i>
+    </div>
+  </div>
+
+  <!-- GLASSMORPHISM FOOTER -->
+  <footer class="glass-footer">
+    <div class="footer-inner container">
+      <div class="row gy-4">
+        
+        <!-- Column 1: Logo + Short Bio -->
+        <div class="col-lg-4 col-md-6">
+          <div class="d-flex align-items-center mb-2">
+            <div class="logo-icon">
+              <i class="fas fa-crown"></i>
+            </div>
+            <span class="logo-brand">StellarPort</span>
+          </div>
+          <p class="bio-text">
+            Hi, I'm <strong style="color:#FFB7D2;">Alex Morgan</strong> — UI enthusiast & creative developer. 
+            I craft immersive web experiences with modern design trends. Let's build something amazing together.
+          </p>
+        </div>
+        
+        <!-- Column 2: Quick Links -->
+        <div class="col-lg-4 col-md-6">
+          <h5 class="footer-title"><i class="fas fa-compass me-2" style="font-size: 1rem;"></i> Quick Links</h5>
+          <ul class="quick-links">
+            <li><a href="#"><i class="fas fa-angle-right me-2" style="font-size: 0.7rem;"></i> Home</a></li>
+            <li><a href="#"><i class="fas fa-angle-right me-2" style="font-size: 0.7rem;"></i> About</a></li>
+            <li><a href="#"><i class="fas fa-angle-right me-2" style="font-size: 0.7rem;"></i> Skills</a></li>
+            <li><a href="#"><i class="fas fa-angle-right me-2" style="font-size: 0.7rem;"></i> Projects</a></li>
+            <li><a href="#"><i class="fas fa-angle-right me-2" style="font-size: 0.7rem;"></i> Contact</a></li>
+          </ul>
+        </div>
+        
+        <!-- Column 3: Contact Information & Social Icons -->
+        <div class="col-lg-4 col-md-12">
+          <h5 class="footer-title"><i class="fas fa-address-card me-2"></i> Connect</h5>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span><a href="mailto:hello@stellarport.com">hello@stellarport.com</a></span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone-alt"></i>
+            <span><a href="tel:+1234567890">+1 (234) 567-890</a></span>
+          </div>
+          <!-- Social Media Icons with glow hover -->
+          <div class="social-icons mt-3">
+            <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Copyright Notice -->
+      <div class="copyright">
+        <i class="far fa-copyright me-1"></i> 2024 Alex Morgan. All Rights Reserved. | Crafted with 
+        <i class="fas fa-heart" style="color: #ff9acb; font-size: 0.7rem;"></i> & glassmorphism
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll-to-Top Button (glowing hover) -->
+  <div class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </div>
+
+  <!-- Bootstrap JS Bundle (optional for toggles but used for potential interactions) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom JS for smooth scroll to top + interactive glow assurance -->
+  <script>
+    (function() {
+      // get scroll-to-top button element
+      const scrollBtn = document.getElementById('scrollTopBtn');
+      
+      // function to scroll to top smoothly
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+      
+      // add click event
+      if (scrollBtn) {
+        scrollBtn.addEventListener('click', scrollToTop);
+      }
+      
+      // optional: show/hide button based on scroll position (enhance UX)
+      // but we keep it always visible as per design but add a subtle style if needed.
+      // make it extra smooth with fade/ visibility? but requirement just needs button with glowing hover.
+      // For better experience we hide when at top? not mandatory but nice.
+      function toggleScrollBtn() {
+        if (!scrollBtn) return;
+        if (window.scrollY > 300) {
+          scrollBtn.style.opacity = '1';
+          scrollBtn.style.pointerEvents = 'auto';
+        } else {
+          scrollBtn.style.opacity = '0.7';
+          // still visible but less intrusive, but we keep always clickable
+          scrollBtn.style.pointerEvents = 'auto';
+        }
+      }
+      // set initial state
+      toggleScrollBtn();
+      window.addEventListener('scroll', toggleScrollBtn);
+      
+      // adding smooth hover glow for all social icons also enforced by CSS
+      // also add a tiny animation for footer border glow
+      console.log("Glassmorphism footer active with pink+sky theme, glowing scroll btn ready");
+    })();
+  </script>
+  
+  <!-- Additional dynamic keyframe for bounce arrow -->
+  <style>
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); opacity: 0.6; }
+      50% { transform: translateY(12px); opacity: 1; }
+    }
+    /* custom glow on quick links extra polish */
+    .quick-links li a i {
+      transition: transform 0.2s;
+    }
+    .quick-links li a:hover i {
+      transform: translateX(4px);
+      color: #FF9FCF;
+    }
+    /* make footer content more readable */
+    .glass-footer .contact-item i, .glass-footer .social-icon i {
+      filter: drop-shadow(0 0 2px rgba(255,160,200,0.5));
+    }
+    /* extra border gradient glow subtle on footer container */
+    .glass-footer {
+      transition: box-shadow 0.3s;
+    }
+    .glass-footer:hover {
+      box-shadow: 0 -12px 35px rgba(0, 0, 0, 0.3), inset 0 1px 2px rgba(255,220,240,0.2);
+    }
+  </style>
+</body>
+</html>
